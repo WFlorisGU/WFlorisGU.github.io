@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/2.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/2.jpg?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算机网络，为实现资源共享和数据通信而产生的。  计算机网络的定义：把地理上分散，两台以上独立的计算机，通过通信设备和线路连接起来，以功能完善的网络软件实现资源共享和数据通信而产生的。 #####下面就功能方面叙述：资源共享方面：1.硬件资源共享资源子网上的所有主机都成为了资源共享的对象，可以由网络用户发出请求得到资源。   Eg:共享打印机，共享硬盘。。。。这里不是很理解磁盘信息的地址：柱面号">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络小结">
+<meta property="og:url" content="http://yoursite.com/2017/10/19/计算机小记/index.html">
+<meta property="og:site_name" content="Floris&#39;s blog">
+<meta property="og:description" content="计算机网络，为实现资源共享和数据通信而产生的。  计算机网络的定义：把地理上分散，两台以上独立的计算机，通过通信设备和线路连接起来，以功能完善的网络软件实现资源共享和数据通信而产生的。 #####下面就功能方面叙述：资源共享方面：1.硬件资源共享资源子网上的所有主机都成为了资源共享的对象，可以由网络用户发出请求得到资源。   Eg:共享打印机，共享硬盘。。。。这里不是很理解磁盘信息的地址：柱面号">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-02T15:17:28.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络小结">
+<meta name="twitter:description" content="计算机网络，为实现资源共享和数据通信而产生的。  计算机网络的定义：把地理上分散，两台以上独立的计算机，通过通信设备和线路连接起来，以功能完善的网络软件实现资源共享和数据通信而产生的。 #####下面就功能方面叙述：资源共享方面：1.硬件资源共享资源子网上的所有主机都成为了资源共享的对象，可以由网络用户发出请求得到资源。   Eg:共享打印机，共享硬盘。。。。这里不是很理解磁盘信息的地址：柱面号">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/19/计算机小记/"/>
+
+
+
+
+
+  <title>计算机网络小结 | Floris's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Floris's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/19/计算机小记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Floris">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Floris's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络小结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T18:37:54+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>计算机网络，为实现资源共享和数据通信而产生的。</p>
+</blockquote>
+<p>计算机网络的定义：把地理上分散，两台以上独立的计算机，通过通信设备和线路连接起来，以功能完善的网络软件实现资源共享和数据通信而产生的。</p>
+<p>#####下面就功能方面叙述：<br><strong>资源共享方面：</strong><br>1.硬件资源共享<br>资源子网上的所有主机都成为了资源共享的对象，可以由网络用户发出请求得到资源。   Eg:共享打印机，共享硬盘<br>。。。。这里不是很理解磁盘信息的地址：柱面号（磁道号）+磁盘面号（磁头号）+扇区号。电梯式调度算法。。。。。。。<br>2.软件资源共享<br>3.通信信道的共享：<br>    1)固定分配信道法<br>    2)随机分配信道方式<br>    3)排队分配信道方式。</p>
+<p><strong>数据通信方面</strong></p>
+<p>#####计算机网络的组成：<br><strong>计算机</strong><br>完成数据处理任务。提供共享资源。<br>按功能分为客户机和服务器.<br>客户机是指装有客户端软件的计算机，向网络中的服务器发送请求。<br>服务器是指：向客户提供服务的计算机。服务器类型有：文件服务器，打印服务器，数据库服务器，电子邮件服务器，域名服务器，Web服务器等。</p>
+<p><strong>传播介质</strong><br>计算机网络通常用以下几种介质：双绞线，同轴电缆，光导纤维，无线传播介质（微波，红外线，激光），卫星线路等</p>
+<p><strong>网络连接设备</strong><br>1.网络连接件（网卡，调制解调器）<br>2.网内连接设备（中继器，集线器）<br>3.网间连接器（网桥，路由器，交换器）</p>
+<p><strong>网络软件</strong><br>包括网络操作系统：网络适配器启动程序，网卡驱动程序，子网协议和应用协议</p>
+<p>#####计算机网络的分类：<br><strong>地域分类</strong>： 局域网，城域网，广域网<br>广域网运用了些差错检验，流量控制的功能<br>局域网：如何在可靠信道上实现可靠传输（路程段，信道质量较高，广域网技术无意义）</p>
+<p><strong>配置分类</strong>：对等式（p2p），客户服务器网络，混合式网络<br>对等网络又称工作组。<br>混合式网络是基于服务器网络和对等式网络相结合的产物。</p>
+<p><strong>通信传播方式分类</strong>：<br>点对点通信网：局域网，点对点的连接方式，把各个计算机连接起来的。<br>广播式通信网：广域网。公用介质把各个计算机连接起来。</p>
+<p><strong>传输信道分类</strong>：基带宽带，模拟和数字等。</p>
+<p>#####计算机网络的拓扑结构</p>
+<blockquote>
+<p>指的是通信子网中的结点和线路的几何排列。</p>
+</blockquote>
+<p>1.广域网（集中式，分散式，分布式）<br>2.局域网（星形结构，树形结构，总线型结构，环形结构，蜂窝拓扑型结构）</p>
+<p>++星形结构++：传播速度快，网络构型简单。但是可靠性低，共享能力差，中心结点一出错，则导致全网瘫痪。<br>++树形结构++：成本低，结构简单，除了叶节点及相连的链路外，任何一个工作站或是了链路发生故障，会影响整个网络。<br>++总线型结构++:<br>各个节点和一根总线连接，总线结构网络工作站结点个数是有限的。当某个节点出故障时，对整个网络影响较小，但是由于都是公共的总线，因此实时性较差。<br>++环形结构++：<br>总线头尾相接，因此某个节点发生故障，都不影响整体运行。可靠性高，但是由于环路是封闭的，不利于扩充。<br>++蜂窝拓扑结构++：<br>无线局域网常用，利用无限传输介质进行点到点的多点传输。</p>
+<h5 id="计算机网络技术"><a href="#计算机网络技术" class="headerlink" title="计算机网络技术"></a>计算机网络技术</h5><blockquote>
+<p>包括计算机技术和数据通信技术<br>(下面主要讨论数据通信技术)</p>
+</blockquote>
+<p>通信系统的三个基本要素：信源，通信介质和信宿。<br>信源-&gt;信号转换设备-&gt;通信介质-&gt;信号转换设备-&gt;信宿<br>信源信宿统称为数据终端设备。数据变换设备成为数据通信设备。<br>模拟通信信道指的是传输信道中是模拟信号的通信系统<br>数字通信信道指的是传输信道中是数字信号的通信系统。<br>根据数据在某一时间信息的传输方向和特点，线路通信方式分为：单工通信，半双工通信和全双工通信。<br>单工：始终在一个方向上的通信<br>半双工：通信信道的每一端可以是发送端也可以是接收端，但是在同一时刻只能有一个传输方向。<br>全双工：双向可以进行通信。<br>数据传输方式：并行数据传输和串行数据传输。<br>并行数据传输：多个数据位同时在设备上进行传输。花费较高，适合近距离传输，适用于计算机内部。<br>串行数据传输：单个数据位在设备间进行传输，若要传输多位，则需“排队”</p>
+<p>通信中的基本术语：<br>1.带宽：指信道允许通过信号频率的范围。因此单位为赫兹。标准电话带宽为300-3400Hz。<br>2.码元：承载信息的基本单位。数据的有效状态值决定。<br>3.误码率<br>4.基带传输：指调制前的原始信号所占的频带。直接传输原始的信号。<br>5.频带传输：指把基带数字信号调制成文模拟信号的传输<br>6.宽带传输：指比音频带宽更宽的频带，包括电磁波谱。利用宽带进行的传输称为宽带传输。</p>
+<p>关于传输率：<br>信号传输率：指线路上单位时间传输的波形个数。单位波特（Baud）<br>数据传输率：单位时间内传输比特的位数。单位位每秒。<br>两者之间的关系：数据率=波特率×一码元携带的信息量（log2n）n为信号有效值状态数。</p>
+<p>数据编码技术<br><em>按表达方式</em>：模拟信号和数字信号。（前提：数字数据和模拟数据）<br>模拟信号，连续变化的电磁波，数字信号离散的电磁波。<br>       数字数据-》数字信号<br>1.归零位（正脉冲为1，负脉冲为0）<br>2.不归零位（正电为1，负点为0）<br>3.曼切斯特编码：0和1的表示不再是单纯的在范围内明显表示。0就是中间趋势向上。1就是中间趋势向下。<br>4.微分曼切斯特编码：0是位边界变化。1位边界延续下去无变化。</p>
+<pre><code>数字数据--》模拟信号
+</code></pre><p>调制技术：将数字数据变为模拟信号<br>BY 载波（高频等幅正弦波）<br>1.调幅 幅度<br>2.调频 频率<br>3.调相 相位</p>
+<p>调频的抗干扰能力优于调幅，但是本身频带利用率不高。但是现在普遍全双工+双方向信号调制不同频段。</p>
+<p>调制解调器：调制器+解调器<br>使得传输率更高，利用多元制振幅相位混合调制方法。每个码元可以携带的信息量更多。十六进制时：一个码元携带4个比特信息，信道带宽为2400Hz，则数据传输率为2400×4=9600bps</p>
+<pre><code>模拟信号--》数字信号
+</code></pre><p>脉冲调制（PCM）由采样到的信号划分幅度等级，在将每一部分量化后的整数转换成二进制。这样就形成的一种数字信号啦。</p>
+<p>同步技术<br>发送端到接收段步调一致。技术包括：同步传输和异步传输<br>同步传输：按位同步技术（提前打个信号（外同步）或是从编码信息自己提取曼切斯特编码（自同步））<br>异步传输：群同步（不是一个一个了，是一群一群5-8比特同时存在起始位和停止位）</p>
+<p>为节省费用：多路复用技术<br>将多路复用到一条物理主干上。分为频分多路复用，波分多路复用，时分多路复用。<br>频分多路复用FDM：将有效带宽分为若干频段。<br>波分多路复用WDM：光纤信道上使用的频分多路复用的变种。波长范围也可以表示频率的范围，两者具有对应关系。不同的光缆利用棱柱将不同能量的光分开到一根光纤上。<br>十分多路复用TDM：将物理信道分成若干时间段，从而利用整个带宽进行信号的传输。有根据时间是否能够动态分配。有存在同步时分和异步时分。</p>
+<p>传输介质<br>指通信中实际传输信息的载体。主要分为有线（双绞线，同轴电缆，光缆）和无线（微波，卫星）<br>双绞线：两根绝缘铜线扭在一起的通信介质。绞在一起可以减少相邻导线的静电干扰。模拟信号和数据信号传输都可使用。主要种类有：屏蔽双绞线和无屏蔽双绞线。<br>同轴电缆：有内导体铜芯，绝缘层，网状编织的外导体屏蔽层以及保护塑料外层组成。抗干扰性强：分类：50Ω（基带同轴电缆，主要传输基带信号）75Ω（宽带同轴电缆，主要是模拟信号的传输）95Ω（用于ARCNET局域网）<br>光缆：利用光脉冲信号进行通信。这种通信频带特别宽10的8次方。主要分为多膜光纤（光线利用多角度放射向前传输）和单模光纤（沿着光纤轴心直线传播）</p>
+<p>无线微波通信（地面微波和卫星微波）地理位置不同分的类<br>微波特点：直线传播，同时传播范围50km。</p>
+<p>差错控制：<br>方法：自动请求重发（接收端检查：不知位置但知道错了）；向前纠错（接收端：找到位置，自动纠错）；反馈检验（到发送端：比对，错则改，对则接收）<br>差错检测和纠正<br>检错码：和原来的编码有一定的约束关系。依次可以知道数据是否错误。<br>循环冗余校验（CRC）<br>多项式编码：<br>基本思想：将校验和加在多项式末尾，使变后的数据能被G（x）除尽。否则，出错<br>步骤：（设要发射的原始比特流是m位，对应多项式为M(x).）<br>1：将位串（二进制后的数）看为系数为0或是1的多项式，k位帧视为k-1的多项式<br>   Eg:位串11001：x5+x4+x0<br>2：多项式G(x),其最高位和最低位为1。假定双方约定生成多项式r次，则在帧（原始数据）的末尾加r个0，使帧为m+r位,则对应的二项式为x的r次方×M(x)<br>3：按膜二除法用A（G(x)的位串）除B（x的r次方×M(x)的位串）<br>4：膜二剑法从B中减去余数，结果就是要传输的带校验和的帧。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/19/计算机网络小结/" rel="next" title="计算机网络小结">
+                <i class="fa fa-chevron-left"></i> 计算机网络小结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/03/计算机小记2/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/2.jpg"
+                alt="Floris" />
+            
+              <p class="site-author-name" itemprop="name">Floris</p>
+              <p class="site-description motion-element" itemprop="description">You are in your timezone!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#计算机网络技术"><span class="nav-number">1.</span> <span class="nav-text">计算机网络技术</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Floris</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
