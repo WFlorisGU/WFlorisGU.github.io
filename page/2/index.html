@@ -334,7 +334,9 @@
         
           
             <p>真的是很偶然看到这本书的吧，哈哈哈两个网上就看完了，在我这里变成了很合适的睡前图书呀~真的是一本超级可爱的图书《学C编程也可以卡通一点》，就是真的用漫画的形式把语言中大部分内容大概的讲解了一遍~<br>在里面真的是复习了一遍的赶脚~下面记一下自己回忆起来的一些点吧：<br>☻double-16字节 int-4字节 char-1字节<br>☻scanf(“%d %d”,&amp;a,&amp;a)通过地址，将变量的数值放到变量里面<br>☻编译就是将代码变成程序<br>☻2==2==1  //true<br>☻循环中的continue是停止本次循环，直接下一次的循环</p>
-<p>☻C语言是典型的顺序编程，而面向对象编程是定义好对象的同时将这个对象应该做的动作全部封装到对象中去。所以当对象建立时，动作自动发生。<br>☻指针指向某一个变量p=&test;<br><em>p将所指的变量数值显示出来<br>☻数组也是指针；int </em>p=null;p=arr;<br>☻动态分配变量malloc函数；结束后free函数释放；relloc<br>之所以产生就是因为不知道要储存多少数据时，采用大数组的话就浪费太多内存了。<br><img src="../images/180304.jpg" alt="“代码过程”"><br>☻<img src="../images/18030402.jpg" alt="“链表”"></p>
+<p>☻C语言是典型的顺序编程，而面向对象编程是定义好对象的同时将这个对象应该做的动作全部封装到对象中去。所以当对象建立时，动作自动发生。<br>☻指针指向某一个变量p=&test;<br><em>p将所指的变量数值显示出来<br>☻数组也是指针；int </em>p=null;p=arr;<br>☻动态分配变量malloc函数；结束后free函数释放；relloc<br>之所以产生就是因为不知道要储存多少数据时，采用大数组的话就浪费太多内存了。</p>
+<p><img src="../images/180304.jpg" alt="&quot;代码过程&quot;"></p>
+<p><img src="../images/18030402.jpg" alt="&quot;链表&quot;"></p>
 
           
         
@@ -823,52 +825,74 @@
       
         
           
-            <p>今天的课程又结束了，好快啊……<br>今天上午课程依旧python，scrapy框架……这个在这里就不记述了。<br>几天下午学习的vba在很大程度上又开启了我另一个世界<br>太神奇了。太赞了！<br><br><br>下面记述一下，如何在vba中实现汇总word文章中不同表的内容资料：<br><code><br>` Sub 汇总所有数据()<br>    ‘定义所有变量<br>   Dim ff As String, path As String, a As Integer, Filename As String<br>   ‘定义等会窗口中过滤出的文件类型<br>   ff = “Word文档(<em>.doc;</em>.docx),<em>.doc;</em>.docx “<br>   ‘窗口中左上角显示文字<br>   strtitle = “打开Word文档”<br>   ‘选择后取路径，并赋值到path中<br>   path = Application.GetOpenFilename(filefilter:=ff, Title:=strtitle)</code></p>
-<p>   ‘将“路径”中的路径和文件名整体分开<br>   a = Len(path)<br>     For i = 1 To a<br>     ‘从右开始直到截取到\，才执行if程序中内容<br>      If Mid(Right(path, i), 1, 1) = “\” Then<br>      path = Mid(path, 1, a - i + 1)<br>      Exit For<br>      End If<br>    Next<br>    ‘按照dir排序path所有文件名<br>    Filename = Dir(path)</p>
-<pre><code>&apos;循环查找word文件中table中的指定值，输出到excel中
-k = 2
-&apos;开始循环，文件不为空，直接开始循环
-Do While Filename &lt;&gt; &quot;&quot;
- &apos;下面这一条固定，表示word应用程序（docapp）被创建,同样每一循环都必须打开word
- Set docapp = CreateObject(&quot;Word.application&quot;)
- &apos;创建对象，打开word文档
- Set dd = docapp.documents.Open(path &amp; Filename)
- &apos;创建对象，附上文档中的第一个表格table
- Set ddd1 = dd.Tables(1)
- Set ddd2 = dd.Tables(2)
- &apos;计算表格中行数
- x = ddd2.Range.Rows.Count
- For i = 2 To x    &apos;i为word中表格的行数
-  Cells(k, 1) = Mid(ddd1.cell(1, 2).Range, 1, Len(ddd1.cell(1, 2).Range) - 2)
-  Cells(k, 2) = Mid(ddd2.cell(i, 2).Range, 1, Len(ddd2.cell(i, 2).Range) - 2)
-  Cells(k, 3) = Mid(ddd1.cell(1, 4).Range, 1, Len(ddd1.cell(1, 4).Range) - 2)
-  Cells(k, 4) = Mid(ddd1.cell(1, 6).Range, 1, Len(ddd1.cell(1, 6).Range) - 2)
-  Cells(k, 5) = Mid(ddd1.cell(2, 4).Range, 1, Len(ddd1.cell(2, 4).Range) - 2)
-  Cells(k, 6) = Mid(ddd1.cell(3, 4).Range, 1, Len(ddd1.cell(3, 4).Range) - 2)
-  Cells(k, 7) = Mid(ddd2.cell(i, 3).Range, 1, Len(ddd2.cell(i, 3).Range) - 2)
-
-  k = k + 1      &apos;k为输出到的表格行数
- Next
- &apos;开完一个文档后，各种关闭和归零
- dd.Close
-docapp.Quit
- Set docapp = Nothing
- Set dd = Nothing
- Set ddd1 = Nothing
- Set ddd2 = Nothing
- &apos;文件到下一个
- Filename = Dir
- Loop
-
- &apos;所有文件读取完后，手动修改第一行
- Cells(1, 1) = &quot;姓名&quot;
- Cells(1, 2) = &quot;日期&quot;
- Cells(1, 3) = &quot;性别&quot;
- Cells(1, 4) = &quot;学历&quot;
- Cells(1, 5) = &quot;工资&quot;
- Cells(1, 6) = &quot;年龄&quot;
- Cells(1, 7) = &quot;销售客单&quot;
-</code></pre><p>End Sub `<br><br><img src="..\images\2018.1\效果.png" alt="“汇总结果图”"><br><br><br>下面是特殊效果，模块代码实现不同行列实现颜色区别：<br><img src="..\images\2018.1\效果2.png" alt="“颜色图”"><br>再通过放在用户中appdata中roaming，其中的微软的excel中文件下。<br>在通过设置excel软件下的“项目”。添加可信任位置。设置便捷按键（？）<br>实现快捷“色彩阅读模式”<br><br><br>下面是部分abv图片：<br><img src="..\images\2018.1\1.png" alt="“插入数据图”"><br><img src="..\images\2018.1\2.png" alt="“计算图”"></p>
+            <p>今天的课程又结束了，好快啊……<br>今天上午课程依旧python，scrapy框架……这个在这里就不记述了。<br>几天下午学习的vba在很大程度上又开启了我另一个世界<br>太神奇了。太赞了！<br><br><br>下面记述一下，如何在vba中实现汇总word文章中不同表的内容资料：</p>
+<p><code>` Sub 汇总所有数据() 
+    &#39;定义所有变量
+    Dim ff As String, path As String, a As Integer, Filename As String
+    &#39;定义等会窗口中过滤出的文件类型
+    ff = &quot;Word文档(*.doc;*.docx),*.doc;*.docx &quot;
+    &#39;窗口中左上角显示文字
+    strtitle = &quot;打开Word文档&quot;
+    &#39;选择后取路径，并赋值到path中
+    path = Application.GetOpenFilename(filefilter:=ff, Title:=strtitle)
+    &#39;将“路径”中的路径和文件名整体分开
+    a = Len(path)
+     For i = 1 To a
+     &#39;从右开始直到截取到\，才执行if程序中内容
+      If Mid(Right(path, i), 1, 1) = &quot;\&quot; Then
+      path = Mid(path, 1, a - i + 1)
+      Exit For
+      End If
+    Next
+    &#39;按照dir排序path所有文件名
+    Filename = Dir(path)
+    &#39;循环查找word文件中table中的指定值，输出到excel中
+    k = 2
+    &#39;开始循环，文件不为空，直接开始循环
+    Do While Filename &lt;&gt; &quot;&quot;
+     &#39;下面这一条固定，表示word应用程序（docapp）被创建,同样每一循环都必须打开word
+     Set docapp = CreateObject(&quot;Word.application&quot;)
+     &#39;创建对象，打开word文档
+     Set dd = docapp.documents.Open(path &amp; Filename)
+     &#39;创建对象，附上文档中的第一个表格table
+     Set ddd1 = dd.Tables(1)
+     Set ddd2 = dd.Tables(2)
+     &#39;计算表格中行数
+     x = ddd2.Range.Rows.Count
+     For i = 2 To x    &#39;i为word中表格的行数
+      Cells(k, 1) = Mid(ddd1.cell(1, 2).Range, 1, Len(ddd1.cell(1, 2).Range) - 2)
+      Cells(k, 2) = Mid(ddd2.cell(i, 2).Range, 1, Len(ddd2.cell(i, 2).Range) - 2)
+      Cells(k, 3) = Mid(ddd1.cell(1, 4).Range, 1, Len(ddd1.cell(1, 4).Range) - 2)
+      Cells(k, 4) = Mid(ddd1.cell(1, 6).Range, 1, Len(ddd1.cell(1, 6).Range) - 2)
+      Cells(k, 5) = Mid(ddd1.cell(2, 4).Range, 1, Len(ddd1.cell(2, 4).Range) - 2)
+      Cells(k, 6) = Mid(ddd1.cell(3, 4).Range, 1, Len(ddd1.cell(3, 4).Range) - 2)
+      Cells(k, 7) = Mid(ddd2.cell(i, 3).Range, 1, Len(ddd2.cell(i, 3).Range) - 2)
+      k = k + 1      &#39;k为输出到的表格行数
+     Next
+     &#39;开完一个文档后，各种关闭和归零
+     dd.Close
+    docapp.Quit
+     Set docapp = Nothing
+     Set dd = Nothing
+     Set ddd1 = Nothing
+     Set ddd2 = Nothing
+     &#39;文件到下一个
+     Filename = Dir
+     Loop
+     &#39;所有文件读取完后，手动修改第一行
+     Cells(1, 1) = &quot;姓名&quot;
+     Cells(1, 2) = &quot;日期&quot;
+     Cells(1, 3) = &quot;性别&quot;
+     Cells(1, 4) = &quot;学历&quot;
+     Cells(1, 5) = &quot;工资&quot;
+     Cells(1, 6) = &quot;年龄&quot;
+     Cells(1, 7) = &quot;销售客单&quot;
+    End Sub</code></p>
+<p><img src="../images/2018.1/x1.png" alt="&quot;汇总结果图&quot;"></p>
+<p><br><br>下面是特殊效果，模块代码实现不同行列实现颜色区别：</p>
+<p><img src="../images/2018.1/x2.png" alt="&quot;颜色图&quot;"></p>
+<p>再通过放在用户中appdata中roaming，其中的微软的excel中文件下。<br>在通过设置excel软件下的“项目”。添加可信任位置。设置便捷按键（？）<br>实现快捷“色彩阅读模式”<br><br><br>下面是部分abv图片：</p>
+<p><img src="../images/2018.1/1.png" alt="&quot;插入数据图&quot;"><br><img src="../images/2018.1/2.png" alt="&quot;计算图&quot;"></p>
 
           
         
@@ -1111,21 +1135,42 @@ docapp.Quit
           
             <p>嗯原本是计划做12月份的总结……因为自己以为日记本放在家里了，但是突然一想，好像暑假没回家，我就……找到了我的日记本嘻嘻嘻。<br>终于做年度总结了，怎么说能，自己看自己的日记和各种照片，就看了1个多小时，我还没看自己的moment还有微博呢。<br>怎么说呢……在之前自己一直有想法觉得我的2017没有2016那么突破，那么打开。<br>但是看完自己写的东西，自己经历的事情。我只能说2017年的自己很棒。给自己一个大大的肯定。无论是心里状态上的，还是自己踏出自己圈子的脚步。<br>真的很棒！</p>
 <blockquote>
-<p>“先做自己然后再去找自己热爱的事情。因为如果你不先做自己，你就会生活在一个很被动的环境里，从而也很难寻找到自己想要的东西……”</p>
+<p><strong>“先做自己然后再去找自己热爱的事情。因为如果你不先做自己，你就会生活在一个很被动的环境里，从而也很难寻找到自己想要的东西……”</strong></p>
 </blockquote>
-<p><img src="/images/2017summery/4.JPG" alt="“日记本”"><br><strong> 2017年一月份 </strong><br>1.1：手账安排一整年的计划完成；第一次滑冰；打扫到自己很多丢了好久的东西 (●’◡’●)<br>1.5：第一次面试，深深的受挫。同时也知道自己的语言表达能力弱，还要继续去学习才对！锻炼！<br>1.11：第一次帮爸妈开发票。结果出了一大堆错，自己的运气……自己外出做事的时候要拿出底气来！  </p>
+<div style="text-aligh:center;"><img src="../images/2017summery/4.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
+<p><strong> 2017年一月份 </strong><br>1.1：手账安排一整年的计划完成；第一次滑冰；打扫到自己很多丢了好久的东西 (●’◡’●)<br>1.5：第一次面试，深深的受挫。同时也知道自己的语言表达能力弱，还要继续去学习才对！锻炼！<br>1.11：第一次帮爸妈开发票。结果出了一大堆错，自己的运气……自己外出做事的时候要拿出底气来！  </p>
+<div style="text-aligh:center;"><img src="../images/2017summery/8.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
 <p><strong> 2017年二月份 </strong><br>2.1：开通了播客“侘寂之路”，用心录制《尼采治焦虑》<br>2.4：坚持每天跑步一个月。<br>2.25：回到学校，开始大二第二学期</p>
 <p><strong> 2017年三月份 </strong><br>3.7：被大一表白。拒绝了<br>3.15：带练突破，相信自己可以很好hold住全场。明白自己要好好提高英文<br>3.18：大二第一次小组长选拔。第一次当面试官，明白自己第一次面试的问题“缺乏自信”，没有把可以展示的展示出来。（想要提高自己的口语交流能力）<br>3.19：第一次巅疯秀主持人。应变能力加油！<br>3.25：享受在健身房里流汗的感觉！</p>
 <p><strong> 2017年四月份 </strong><br>4.3：第一次在健身房跑了5公里，太爽了！总是在自己好像坚持不下去的时候再次起来努力知道自己还可以，一点一点挑战极限的感觉。<br>4.8：大叔在学校做演讲，第一次见到雪薇姐，很勇敢的站起来大喊和展示英文。<br>4.9——4.10：两天发音班，满满感动。“所有的改变都是为了心中不变”。很喜欢大叔，给我们带来太多的力量了，大叔生日快乐。<br>4.19：再次5公里<br>4.20：《心理学》看完，开始看《与“众”不同的心理学》；慧影老师考核结束，确认进入C营，第二次进集训营。</p>
 <p><strong> 2017年五月份 </strong><br>5.1——5.2：布莱恩封闭强化集训营，三天C营，哭得我稀里哗啦的。在这个过程中更多得明白自己很好，肯定自己，才知道自己有那么多的委屈，那么多的放不下，自己那么害怕数学……真的很棒三天的自己。感谢集训营 感谢布莱恩<br>5.4：带着<del>甜美</del>沙哑的嗓音配出了很棒的魔方秀，也是第一次在朋友圈里分享，明白自己好棒。<br>5.7：第7届换届，成为晨读部负责人。责任和使命<br>5.11：被AP NEWS虐爆，逐字稿做到心累，但是还是很开心，觉得好棒这是个挑战啊！<br>5.19：见到二熊；第一次不是通过网上录音听到二熊的声音。激动。<br>5.21：第一次六级口语考试；明白自己过于依赖社团环境，离开了社团，就没有那股自信了。口语考试本质：输出。自己开不了口，打脸<br>社团会议：发现自己的分享能给别人带来很多共鸣，很开心，也知道当自己离开自己的舒适圈自己才会更好成长。<br>5.26：神奇英语口语角：自己很主动的很外国朋友交流跳舞，分享东西，自拍。明白很多时候你都必须去主动成长自己，退缩只会让你错失机会。交流真的很简单，只要你开口。</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/2.JPG" height="200px" width="auto" style="text-aligh:center;"> </div>
+
 <p><strong> 2017年六月份 </strong><br>6.1：跑步跑出一种节奏感，爽！从跑步中知道自己是个喜欢不断突破的人。<br>6.4：2017年的植物园。自己是一名大二的呢。在自我意识方面成长了好多啊。<br>6.13：大叔的分享会。明白自己想要考助教的理由：持续性的打开。<br>6.20：大二告白，拒绝<br>6.25：第一次剪视频，拍视频，为视频录音。向浩东学习如何剪视频，太棒的体验了。<br>6.28：第一次科一没过，被暗示，我不重视一件自己很在乎的事情的话，我会后悔的，一巴掌拍醒我。</p>
 <p><strong> 2017年六月份 </strong><br>7.1：七月第一天仪式感满满。练习了正念行走，专注的力量。<br>7.2：再次回归省图，和想看的书呆在一起直到工作人员闭馆，赶我出来嘻嘻。<br>7.3：视频剪辑和记者团电话面试完成！<br>7.6：第一次中暑（感觉真心不好……）和记者团微信面试。怀疑和不自信。<br>7.10：第一次魔方秀唱中文歌，被自己迷倒。《蜜蜂》<br>7.17：第三次参加集训营（X团）。最有爱的一次集训营，有很难受的时候，质疑自己能不能把一件事情做好……最后明白，自己太矫情，其实就是做事太少了才会有那么多想法。</p>
 <p><strong> 2017年七月份 </strong><br>看电影 健身 读书</p>
 <p><strong> 2017年八月份 </strong><br>8.5：出门看晚电影，发现自己迎来了第一次中奖，兰芝气垫BB哇，激动。<br>8.8——8.17：科二过<br>8.19：“科二”视频剪辑。自己加入了更多自己喜欢的元素进去。搞怪的特效等等。<br>8.22：六级成绩被刷新，521分。自己很棒。口语C+真心不服。等我刷分。<br>8.28：巅疯生日会上主持人。第一次在大家面前穿裙子。粗粗粗哭唧唧。修行磨练。<br>8.30：祝自己生日快乐！</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/12.JPG" height="300px" width="auto" style="text-aligh:center;"><img src="../images/2017summery/13.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
 <p><strong> 2017年九月份 </strong><br>9.2-9.3：工作会议。给了自己在之后的新生带练中信心。确定方向。到哈尔滨后第一次骑行那么远。<br>9.9：哈尔滨教学研讨会。脚踏实地，学习英语。<br>9.10：一天巩固课，第一次做实习dj，Nathan交了我好多啊，dj之路……不要去局限自己。<br>9.15—9.17：黑河之行。一天中原来可以做这么多事。体验的深度与广度。多走去出看看别人是怎么样学习的。<br>9.19：知道自己北京奖学金失败。付出那么多，老师那么相信我，奔溃<br>9.21：报名BEC中级考试。<br>9.22-9.23：绥化之行.自己安排宾馆，自己出来。去个新的地方，尝试不一样的东西，一切都会不一样。想盛哥一样一直在路上。<br>9.24：旁听助教报考，决定……这次不继续报考助教。</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/1.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
 <p><strong> 2017年十月份 </strong><br>10.1：自己的第一个博客搭建！开心~<br>10.2—10.8：国庆爸妈来到哈尔滨，陪我顺便游玩。自己规划整个出游，超级棒！“有趣的灵魂总是会在生命里遇到不一样的。”扩大自己的意识。<br>10.12：参加全国电子商务比赛，开始写方案。发现团队里面自己在与人协调方面要加油，有时候放心不下别人，<br>10.21：和老哥聊天，明白解决了自己的很多问题吧，各种方面的，也知道自己很多时候不能只是在了解的程度看待事情，要去学习。<br>10.28：自己的第一个网站设计完成~</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/14.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
 <p><strong> 2017年十一月份 </strong><br>11.10：2017年哈尔滨第一场雪+大叔分享会+决定去参加发音班<br>11.11—11.12：两天发音班。心里闷闷的感觉没有了，爱和力量又回来了。相信自己，不要自卑下去。<br>11.13：回到巅疯，感恩♥♥♥<br>11.17-11.19:长春两天实战发音班 晨子老师做了很好的榜样，加油成为优秀的助教老师<br>11.22 大四分享会 感谢每个大四的分享。我们的老组长们♥</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/10.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
+
 <p><strong> 2017年十二月份 </strong><br>12.04：布莱恩杯英语演讲比赛初试。第一次演讲比赛。<br>12.07—12.08：Grace老师演讲培训。学习的维度，扩大自己的思维学习。<br>12.10：布莱恩杯复赛 虽然没进决赛，但是感恩自己有的，成长自己没有的。谦卑<br>12.17：布莱恩助教报考。考记者团！<br>12.24：布莱恩圣诞嘉年华 自己有海报 自己又回到了很初心的感觉 上台跳 认真听课 各种。<br>12.31：中央大街 年度合影 开心~</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/7.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
+<p>下面放上：一些照片吧~<br><strong>一年的变化是巨大的：</strong> 容颜的改变啊</p>
+<div style="text-aligh:center;"><img src="../images/2017summery/5.JPG" height="300px" width="auto" style="text-aligh:center;"> </div><br><strong>部分的2017年电影票</strong> 感谢电影陪我一路~<br><div style="text-aligh:center;"><img src="../images/2017summery/6.JPG" height="300px" width="auto" style="text-aligh:center;"> </div><br><strong>日记里的叶子</strong> 整理日记的时候发现自己贴在日记里面的，就是捡到的好看的叶子就贴上了~<br><div style="text-aligh:center;"><img src="../images/2017summery/3.JPG" height="300px" width="auto" style="text-aligh:center;"> </div>
+
+<p>######2017年一步一个脚印过来了，2018年昂首大步向前走！</p>
 
           
         
@@ -1376,7 +1421,7 @@ docapp.Quit
 <p><em>第一，全感。</em><br>   感觉的打开，对你很多方面都是非常有益处。你所喜欢擅长的东西，往往是你感官打开最多的方面。相应的你所不擅长，甚至是讨厌的点，就是你可以去打开更多程度的感官。<br>   从李通的身上，就可以看出他对模仿这个维度的打开，他能感受大英语过程中不一样的东西，所以他的英文成长会更快。这也是Grace老师，说的全感练习的点：就是全感练习，不是一味的机械性学习，否则你会慢慢失去了英文学习的乐趣。去多维度的学习，如“听”——进入到音频感觉中，“模仿”——到你那个模仿的视频感觉里，“唱”——那种节奏那种心情里面等等等。<br>你敞开越多，感受越多，你身上很多不同维度的东西就会被打开。突然发现人真的是一种很有“潜力”的生物。</p>
 <p><em>第二，看待事物的两个视角。</em><br>   语速的快和慢，好与坏。就是很典型的两个方面，不同人的角度看待就是不同，可能认为好厉害，也可能认为失去了一种节奏感，只是一味地快。想到Audrey老师看到电影《正义联盟》两个英雄看待自己super power为“accidence”，认为自己像个“monster”，而我们认为他们就是拥有很棒能力的英雄。这就是一件事情看法不同，结果不同。<br>   一件事情，就在那里，只是看你能不能好好看待它，利用好它。</p>
 <p><em>第三，深掘一些东西背后更本质的东西。</em><br>   你“喜欢音乐”，你喜欢的可能是背后的“轻松”，你觉得别人好棒，然后“模仿”别人身上一些很表层的东西，没有看到TA身上是不是在某一方面特别“打开”。去深掘一件事情里面更核心的东西，不是只停留在表面。做一个“有心人”。</p>
-<p>其实还有好多想要记述下来的，例如自己的不紧张，Higher me，令我印象深刻的演讲等等很多很多。但是我上面写的真的就是我想要记下来的，想要去不断成长，挖掘自己的点。 加油加油<br>踏踏实实<br>知行统一<br>————Floris Harbin.2017.12.03 凌晨写下<br><img src="../images/海选.jpg" alt="我们有爱的大合照"></p>
+<p>其实还有好多想要记述下来的，例如自己的不紧张，Higher me，令我印象深刻的演讲等等很多很多。但是我上面写的真的就是我想要记下来的，想要去不断成长，挖掘自己的点。 加油加油<br>踏踏实实<br>知行统一<br>————Floris Harbin.2017.12.03 凌晨写下<br><img src="../images/lectureCom.jpg" alt="&quot;我们有爱的大合照&quot;"></p>
 
           
         
